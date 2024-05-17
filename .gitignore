@@ -1,0 +1,34 @@
+
+# data files
+*.csv
+*.tournaments
+
+# models
+**/models
+**/modelresults
+
+# downloaded webpages
+**/tournamentpages
+
+# data folders
+**/tournaments
+**/seasons
+**/seasons_noplates
+**/testSplits
+**/testingodds
+**/predictions
+**/rollinginputs
+**/LCS
+**/LEC
+**/MLData
+**/MLDataSplit
+**/combineddata
+
+# r things
+.RData
+.Rhistory
+fancygraphs.R
+.Rproj.user
+
+# testing tangent
+pandastesting.py

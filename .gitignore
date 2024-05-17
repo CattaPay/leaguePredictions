@@ -15,7 +15,6 @@
 **/seasons
 **/seasons_noplates
 **/testSplits
-**/testingodds
 **/predictions
 **/rollinginputs
 **/LCS
@@ -23,6 +22,7 @@
 **/MLData
 **/MLDataSplit
 **/combineddata
+**/final_summaries
 
 # r things
 .RData

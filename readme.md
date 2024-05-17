@@ -1,7 +1,9 @@
 # leaguePredictions #
 An attempt to predict the results of professional league of legends games based on prior results. It uses a random forest model trained on a rolling average of a variety of statistics over a player/teams previous games.  
 
-The models are fit on data pulled from gol.gg, an archive of statistics from all major and minor regions. 
+### Info
+The models are fit on data pulled from gol.gg, an archive of statistics from all major and minor regions. The final model was trained to predict only LCK results, as they tended to have the least variability of all moajor regions.
+
 
 ### Files
 - LECscraping.R
@@ -26,13 +28,6 @@ The models are fit on data pulled from gol.gg, an archive of statistics from all
   - outdated model trained on previous tournaments
 - rollingAlgorithmWide.ipynb
   - model trained on rolling window statistics
-
-
-testingodds/bettingsetup.py: sets up a season for inputting betting odds  
-testingodds/bettingtesting.py: takes a model and runs it against betting input
-
-
-Notes on window/max size
-3-3 is too low... predictions are terrible (60%)
-4-4 was okay
-8-5 was okay
+- testingodds
+  - files to compare model results to betting odds
+  - allows for evaluation of models

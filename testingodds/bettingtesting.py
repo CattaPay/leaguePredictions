@@ -8,7 +8,9 @@ betting_data = pd.read_csv("testingodds/lckodds_spring2024.csv")
 # print(betting_data)
 
 # prediction_data = pd.read_csv("testingodds/lck_2023_5-5.csv").set_index("Match_Number", drop = True)
-prediction_data = pd.read_csv("testSplits/lck_spring_2024.csv").set_index("Match_Number", drop = True)
+# prediction_data = pd.read_csv("testSplits/lck_spring_2024.csv").set_index("Match_Number", drop = True)
+prediction_data = pd.read_csv("testSplits/lck_summer_test.csv").set_index("Match_Number", drop = True)
+
 
 # print(prediction_data)
 
@@ -23,8 +25,8 @@ for col in prediction_data.columns:
     red_cols.append("R_" + col)
 
 all_predictions = pd.DataFrame()
-
-for ind in np.unique(prediction_data.index):
+match_numbers = [99]
+for ind in np.unique(match_numbers):
     match_data = prediction_data.loc[ind]
     bluevsred = pd.DataFrame(pd.concat([match_data.iloc[0].reset_index(drop = True), match_data.iloc[1].reset_index(drop = True)], axis = 0)).T
     redvsblue = pd.DataFrame(pd.concat([match_data.iloc[1].reset_index(drop = True), match_data.iloc[0].reset_index(drop = True)], axis = 0)).T
@@ -46,6 +48,8 @@ for ind in np.unique(prediction_data.index):
     match_predictions = pd.DataFrame(data = [[match_data.iloc[0]["Tournament"], ind, match_data.iloc[0]["Team"], match_data.iloc[1]["Team"], scores[0], scores[1]]],
                                      columns = ["Tournament", "Match_Number", "Team1", "Team2", "Team1Blue", "Team2Blue"])
     all_predictions = pd.concat([all_predictions, match_predictions])
+
+print(all_predictions)
 
 # mathy way to predict series odds
 def seriesOdds(team1Blue, team2Blue, best_of):

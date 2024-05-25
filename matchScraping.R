@@ -239,6 +239,9 @@ getHalfTournamentData = function(tournament_link, doWrite = F, plates = TRUE){
   return(list(player_data, team_data))
 }
 
+
+# replaced getTournamentData with getHalfTournamentData
+# hopefully won't break
 getAllTournaments = function(tournaments_path){
   tournament_links = read_file(tournaments_path) %>%
     read_html() %>%
@@ -246,7 +249,7 @@ getAllTournaments = function(tournaments_path){
     html_attr("href")
   
   for (tournament_link in tournament_links){
-    getTournamentData(tournament_link, doWrite = T, plates)
+    getHalfTournamentData(tournament_link, doWrite = T, plates)
   }
 }
 
@@ -356,4 +359,4 @@ safeGetSeason = function(tournaments_path, season_name, plates = TRUE) {
 
 # lck2024dat = getTournamentData("https://gol.gg/tournament/tournament-stats/LCK%20Spring%202024/", doWrite = T, plates = TRUE)
 
-getHalfTournamentData("https://gol.gg/tournament/tournament-stats/EBL%20Summer%202024/", doWrite = F, plates = T)
+safeGetSeason("tournamentpages/lck_2024_05_24.html", "lck_2024_05_24", plates = TRUE)

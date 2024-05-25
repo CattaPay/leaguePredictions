@@ -187,6 +187,58 @@ getTournamentData = function(tournament_link, doWrite = F, plates = TRUE){
   return(list(player_data, team_data))
 }
 
+# works on tournament that is incomplete
+getHalfTournamentData = function(tournament_link, doWrite = F, plates = TRUE){
+  tournament_matches = gsub("tournament-stats", "tournament-matchlist", tournament_link)
+  
+  html = tournament_matches %>% read_html()
+  # getting links to game pages
+  all_links = html %>%  html_elements(xpath = "/html/body/div/main/div[2]/div/div[3]/div/section/div/div/table/tbody/tr/td[1]/a") %>%
+    html_attr("href") %>% str_replace("..", "")# %>% str_replace("page-game/", "")
+  
+  all_links = paste0("https://gol.gg", all_links)
+  # getting date of each game
+  all_dates = html %>%  html_elements(xpath = "/html/body/div/main/div[2]/div/div[3]/div/section/div/div/table/tbody/tr/td[7]") %>%
+    html_text()
+  
+  # getting tournament name
+  tournament = html %>% 
+    html_elements(xpath = "/html/body/div/main/div[2]/div/h1[1]") %>%
+    html_text() %>% str_trim()
+  
+  # initializing tables
+  player_data = tibble()
+  team_data = tibble()
+  
+  for (i in 1:length(all_links)){
+    match_link = all_links[i]
+    match_date = all_dates[i]
+    print(match_link)
+    tryCatch(
+      {game_dat = getMatchData(match_link, tournament, match_date, length(all_links)-i+1, plates)
+      }, error = function(msg){
+        game_dat <<- list(tibble(), tibble())
+        print("Ur shit broke: ")
+      }
+    )
+    # print(game_dat)
+    player_data = bind_rows(player_data, game_dat[[1]])
+    team_data = bind_rows(team_data, game_dat[[2]])
+    
+    print(paste0(tournament, ": Match ", i, " out of ", length(all_links)))
+  }
+  
+  if (doWrite) {
+    tournament_name = gsub(" ", "_", tournament)
+    directory_path = paste0("tournaments/", tournament_name)
+    dir.create(directory_path, showWarning = F)
+    write_csv(player_data, paste0("tournaments/", tournament_name, "/player.csv"))
+    write_csv(team_data, paste0("tournaments/", tournament_name, "/team.csv"))
+  }
+  
+  return(list(player_data, team_data))
+}
+
 getAllTournaments = function(tournaments_path){
   tournament_links = read_file(tournaments_path) %>%
     read_html() %>%
@@ -241,7 +293,7 @@ safeGetSeason = function(tournaments_path, season_name, plates = TRUE) {
     {getSeason(tournaments_path, season_name, plates)
       
     }, error = function(msg){
-      print("Ur shit broke: ")
+      print("Skipped game")
       print(season_name)
     }
   )
@@ -302,6 +354,6 @@ safeGetSeason = function(tournaments_path, season_name, plates = TRUE) {
 # safeGetSeason("tournamentpages/lckcl2021.html", "lckcl_2021", plates = FALSE)
 # safeGetSeason("tournamentpages/lckcl2020.html", "lckcl_2020", plates = FALSE)
 
-lck2024dat = getTournamentData("https://gol.gg/tournament/tournament-stats/LCK%20Spring%202024/", doWrite = T, plates = TRUE)
+# lck2024dat = getTournamentData("https://gol.gg/tournament/tournament-stats/LCK%20Spring%202024/", doWrite = T, plates = TRUE)
 
-
+getHalfTournamentData("https://gol.gg/tournament/tournament-stats/EBL%20Summer%202024/", doWrite = F, plates = T)

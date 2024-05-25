@@ -20,6 +20,8 @@ for chunk in bigbox:
     wide_colnames += chunk
 
 def getGameTimeS(game_time):
+        if isinstance(game_time, float):
+            return 0
         s = game_time.split(":")
         return int(s[0]) * 60 + int(s[1])
 
@@ -166,6 +168,8 @@ def getSeasonData(folder_path, output_path, verbose = False, match_numbers = Fal
     all_outputs.to_csv(output_path, index = False)
 
     return all_outputs
+
+
     # if verbose:
     #     print(all_outputs)
 #print(team_summaries)
@@ -193,4 +197,4 @@ import os
 #     outputfile = "rollinginputs/" + foldername + ".csv"
 #     getSeasonData(inputfolder, outputfile, verbose = True, match_numbers = True, plates = False)
 
-getSeasonData("tournaments/LCK_Spring_2024", "testSplits/lck_spring_2024.csv", verbose = True, match_numbers = True)
+getSeasonData("seasons/lck_summer_test", "testSplits/lck_summer_test.csv", verbose = True, match_numbers = True)

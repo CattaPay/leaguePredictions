@@ -265,7 +265,7 @@ getSeason = function(tournaments_path, season_name, plates = TRUE) {
   
   count = 0
   for (tournament_link in tournament_links){
-    game_dat = getTournamentData(tournament_link, doWrite = F, plates)
+    game_dat = getHalfTournamentData(tournament_link, doWrite = F, plates)
     new_games = max(game_dat[[2]]$Match_Number)
     if (count > 0){
       team_data = mutate(team_data, Match_Number = Match_Number + new_games)
@@ -359,4 +359,4 @@ safeGetSeason = function(tournaments_path, season_name, plates = TRUE) {
 
 # lck2024dat = getTournamentData("https://gol.gg/tournament/tournament-stats/LCK%20Spring%202024/", doWrite = T, plates = TRUE)
 
-safeGetSeason("tournamentpages/lck_2024_05_24.html", "lck_2024_05_24", plates = TRUE)
+safeGetSeason("tournamentpages/lck_2024_06_13.html", "lck_2024_07_09", plates = TRUE)

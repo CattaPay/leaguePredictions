@@ -1,0 +1,48 @@
+
+  // affiche un time au format mm:ss     
+  function formatTime(time){
+  
+    var result = "";
+    
+    result = ((time-(time%60))/60)+ ":";
+    
+    if((time%60) < 10 )
+      result += "0"+ (time%60);
+    else 
+        result += (time%60);
+    
+    
+    return result;
+  
+  }
+  
+
+  
+   function showPosNegValue(value,posprefix="+"){
+  
+    var str = "";
+  
+    if( value > 0)
+      str = "<span class='text_victory'>"+posprefix+value+"</span>";
+    else if (value == 0)
+      str = 0;      
+    else
+      str = "<span class='text_defeat'>"+value+"</span>";
+  
+    return str;
+  
+  }
+  
+  function showColoredWinrate(value,suffix="%"){
+       var str = "";
+  
+    if( value > 50)
+      str = "<span class='text_victory'>"+value+suffix+"</span>";
+    else if (value == 50)
+      str = "50"+suffix;      
+    else
+      str = "<span class='text_defeat'>"+value+suffix+"</span>";
+  
+    return str;
+  
+  }

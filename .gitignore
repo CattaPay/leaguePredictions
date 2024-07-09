@@ -8,14 +8,14 @@
 **/modelresults
 
 # downloaded webpages
-**/tournamentpages
+# **/tournamentpages
 
 # data folders
 **/tournaments
-**/seasons
+# **/seasons
 **/seasons_noplates
-**/testSplits
-**/predictions
+# **/testSplits
+# **/predictions
 **/rollinginputs
 **/LCS
 **/LEC
@@ -34,8 +34,9 @@ fancygraphs.R
 pandastesting.py
 
 # new stuff
-predictionSetup.py
-runningModel.ipynb
+# predictionSetup.py
+# runningModel.ipynb
+# runningModel.py
 
 # gambling things
 **/testingodds

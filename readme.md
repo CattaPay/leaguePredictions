@@ -1,5 +1,5 @@
 # leaguePredictions #
-An attempt to predict the results of professional league of legends games based on prior results. It uses a random forest model trained on a rolling average of a variety of statistics over a player/teams previous games.  
+An attempt to predict the results of professional league of legends games based on prior results. It uses a random forest model in the XGBoost package trained on a rolling average of a variety of statistics over a player/teams previous games.  
 
 ### Info
 The models are fit on data pulled from gol.gg, an archive of statistics from all major and minor regions. The final model was trained to predict only LCK results, as they tended to have the least variability of all major regions.

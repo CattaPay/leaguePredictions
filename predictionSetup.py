@@ -5,21 +5,19 @@ def line_prepender(filename, lines):
         f.seek(0, 0)
         f.write(header.rstrip('\r\n') + '\n' + lines + '\n' + content)
 
-games = [["T1", "KT Rolster"],
-         ["Hanwha Life eSports", "Nongshim RedForce"],\
-         ["OK BRION", "FearX"],
-         ["Kwangdong Freecs", "Dplus KIA"]]
+games = [["T1", "Dplus KIA"],
+         ["KT Rolster", "FearX"]]
 
 roles = ["TOP", "JUNGLE", "MID", "ADC", "SUPPORT"]
 
 rosters = {"Hanwha Life eSports": ["Doran", "Peanut", "Zeka", "Viper", "Delight"],
-           "Dplus KIA": ["kingen", "Lucid", "ShowMaker", "Aiming", "Kellin"],
+           "Dplus KIA": ["kingen", "Lucid", "ShowMaker", "Aiming", "Mohan"],
            "Nongshim RedForce": ["DnDn", "Sylvie", "Callme", "Jiwoo", "GuGer"],
-           "FearX": ["Clear", "Raptor", "Clozer", "Hena", "Execute"],
+           "FearX": ["Clear", "Raptor", "Clozer", "Hena", "Duro"],
            "Kwangdong Freecs": ["DuDu", "Cuzz", "Bulldog", "Leaper", "Andil"],
            "KT Rolster": ["PerfecT", "Pyosik", "Bdd", "Deft", "BeryL"],
-           "OK BRION": ["Morgan", "Youngjae", "Karis", "Envyy", "Pollu"],
-           "DRX": ["Rascal", "Sponge", "kyeahoo", "Teddy", "Pleata"],
+           "OK BRION": ["Morgan", "YoungJae", "FATE", "Envyy", "Pollu"],
+           "DRX": ["Rascal", "Sponge", "SeTab", "Teddy", "Pleata"],
            "Gen.G eSports": ["Kiin", "Canyon", "Chovy", "Peyz", "Lehends"],
            "T1": ["Zeus", "Oner", "Faker", "Gumayusi", "Keria"]}
 
@@ -33,7 +31,7 @@ for i in games:
 
 # Tournament,Date,Match_Number,Game_Number,Team,Player,Role,Kills,Deaths,Assists,CS,CSM,GPM,VSPM,DPM,KAPM,GD15,CSD15,XPD15
 # Tournament,Date,Match_Number,Game_Number,Team,Win,Kills,Towers,Drakes,Barons,Gold,Grubs,Plates,Top_Plates,Mid_Plates,Bot_Plates,Game_Time
-start_game = 125
+start_game = 197
 for i in range(len(games)):
     game = start_game + i
     lines = ""

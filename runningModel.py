@@ -53,7 +53,7 @@ for col in prediction_data.columns:
 
 # sets up for prediction with each team as blue and red
 print()
-match_numbers = [125, 126, 127, 128]
+match_numbers = [197, 198]
 all_predictions = pd.DataFrame()
 for match_number in match_numbers:
     match_data = prediction_data.loc[prediction_data["Match_Number"] == match_number]
@@ -71,7 +71,7 @@ for match_number in match_numbers:
     dpredict = xgb.DMatrix(data = match_test)
     predictions = bst.predict(dpredict)
 
-    prediction = seriesOdds(predictions[0], predictions[1], 3)
+    prediction = seriesOdds(predictions[0], predictions[1], 5)
     # print(prediction, match_data.iloc[0]["Team"], match_data.iloc[1]["Team"])
     all_predictions = pd.concat([all_predictions, pd.DataFrame([match_data.iloc[0]["Team"], match_data.iloc[1]["Team"], prediction])], axis = 1)
 

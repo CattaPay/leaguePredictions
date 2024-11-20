@@ -359,4 +359,4 @@ safeGetSeason = function(tournaments_path, season_name, plates = TRUE) {
 
 # lck2024dat = getTournamentData("https://gol.gg/tournament/tournament-stats/LCK%20Spring%202024/", doWrite = T, plates = TRUE)
 
-safeGetSeason("tournamentpages/lck_2024_06_13.html", "lck_2024_07_09", plates = TRUE)
+safeGetSeason("tournamentpages/lck_2024_08_30.html", "lck_2024_09_11", plates = TRUE)
